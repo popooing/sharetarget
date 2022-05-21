@@ -118,6 +118,7 @@
       ])
       if (result) {
         alert(`[${result.status}] Message sent!`)
+        liff.closeWindow();
       } else {
         const [majorVer, minorVer, patchVer] = (liff.getLineVersion() || "").split('.');
 
