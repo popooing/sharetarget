@@ -137,15 +137,19 @@
     }
     async function main() {
       await liff.init({ liffId: "1656311409-X0QjVYrZ" })
-      if (liff.isLoggedIn()) {
-        document.getElementById("btnShare").style.display = "block"
+if (liff.isLoggedIn()) {
+        sendShare()
         if (!liff.isInClient()) {
-          document.getElementById("btnLogOut").style.display = "block"
+          logOut()
         }
       } else {
-        document.getElementById("btnLogin").style.display = "block"
+        liff.login()
       }
     }
+    main()
+  </script>
+</body>
+</html>
     main()
   </script>
 </body>
