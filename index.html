@@ -110,14 +110,14 @@
                 stringContent = stringContent.replace(`{{profile.${e}}}`, profile[e])
             })
 
-            // replace this liff url
+            // replace this liff url 1656311409-X0QjVYrZ liffId = params.get("liffId")
             stringContent = stringContent.replace(`{{shareThis}}`, `https://liff.line.me/${liffId}${queryString}`)
 
             content = JSON.parse(stringContent)
         }
 
         async function getLiffId() {
-            liffId = params.get("liffId")
+            liffId = params.get("1656311409-X0QjVYrZ")
             if (!liffId) {
                 throw {
                     emsg: 'no liffId'
