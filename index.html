@@ -47,12 +47,12 @@
             statusMessage: "",
             userId: ""
         }
-        let messages
+        let content
         const shareBtn = document.getElementById("shareBtn")
         const loading = document.getElementById("loading")
 
         async function sendShare() {
-            const result = await liff.shareTargetPicker(messages)
+            const result = await liff.shareTargetPicker(content)
             liff.closeWindow()
             // if (result) {
             //     alert(`[${result.status}] Message sent!`)
@@ -88,32 +88,32 @@
             });
         }
 
-        async function fetchMessages() {
-            const messagesUrl = params.get('messages');
-            if (!messagesUrl) {
+        async function fetchContent() {
+            const contentUrl = params.get('content');
+            if (!contentUrl) {
                 throw {
-                    emsg: 'no messages url'
+                    emsg: 'no content url'
                 }
             }
 
-            const res = await fetch(messagesUrl)
-            messages = await res.json()
+            const res = await fetch(contentUrl)
+            content = await res.json()
         }
 
-        async function prepareMessages() {
+        async function prepareContent() {
             // replace handlebars key
 
-            let stringMessages = JSON.stringify(messages)
+            let stringContent = JSON.stringify(content)
 
             // replace profile
             Object.keys(profile).forEach(e => {
-                stringMessages = stringMessages.replace(`{{profile.${e}}}`, profile[e])
+                stringContent = stringContent.replace(`{{profile.${e}}}`, profile[e])
             })
 
             // replace this liff url
-            stringMessages = stringMessages.replace(`{{shareThis}}`, `https://liff.line.me/${liffId}${queryString}`)
+            stringContent = stringContent.replace(`{{shareThis}}`, `https://liff.line.me/${liffId}${queryString}`)
 
-            messages = JSON.parse(stringMessages)
+            content = JSON.parse(stringContent)
         }
 
         async function getLiffId() {
@@ -133,8 +133,8 @@
                     ...profile,
                     ...await liff.getProfile()
                 }
-                await fetchMessages()
-                await prepareMessages()
+                await fetchContent()
+                await prepareContent()
                 loading.style.display = "none"
                 if (liff.isInClient()) {
                     await sendShare()
