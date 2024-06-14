@@ -1,19 +1,40 @@
-[
-    {
-        "type": "flex",
-        "altText": "This is a Flex Message",
-        "contents": {
-            "type": "bubble",
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": "Hello, World!"
-                    }
-                ]
-            }
-        }
+{
+  "type": "bubble",
+  "size": "giga",
+  "hero": {
+    "type": "image",
+    "url": "https://www.scbeic.com/stocks/product/o0x0/lk/9s/gtiklk9sl3/AW_Real_estate_2024_EIC-02-02.png",
+    "size": "full",
+    "aspectRatio": "20:31",
+    "aspectMode": "cover",
+    "action": {
+      "type": "uri",
+      "uri": "https://www.surveymonkey.com/r/scbeic"
     }
-]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "Share with LINE Friends",
+          "uri": "https://liff.line.me/1654395981-1Enp60g8?messages=https://raw.githubusercontent.com/popooing/sharetarget/main/messages.json"
+        },
+        "color": "#4e2e79"
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [],
+        "margin": "sm"
+      }
+    ],
+    "flex": 0
+  }
+}
