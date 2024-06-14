@@ -54,20 +54,6 @@
         async function sendShare() {
             const result = await liff.shareTargetPicker(messages)
             liff.closeWindow()
-            // if (result) {
-            //     alert(`[${result.status}] Message sent!`)
-            // } else {
-            //     const [majorVer, minorVer, patchVer] = (liff.getLineVersion() || "").split('.');
-
-            //     if (minorVer === undefined) {
-            //         alert('ShareTargetPicker was canceled in external browser')
-            //         return
-            //     }
-
-            //     if (parseInt(majorVer) >= 10 && parseInt(minorVer) >= 10 && parseInt(patchVer) > 0) {
-            //         alert('ShareTargetPicker was canceled in LINE app')
-            //     }
-            // }
         }
 
         async function liffLogin() {
@@ -77,7 +63,6 @@
                 })
                 if (!liff.isLoggedIn()) {
                     if (!liff.isInClient()) {
-                        // set `redirectUri` to redirect the user to a URL other than the front page of your LIFF app.
                         await liff.login({
                             redirectUri: window.location.href
                         });
@@ -90,6 +75,7 @@
 
         async function fetchMessages() {
             const messagesUrl = params.get('messages');
+            console.log("messagesUrl:", messagesUrl); // เพิ่ม log เพื่อตรวจสอบค่า messagesUrl
             if (!messagesUrl) {
                 throw {
                     emsg: 'no messages url'
@@ -101,16 +87,12 @@
         }
 
         async function prepareMessages() {
-            // replace handlebars key
-
             let stringMessages = JSON.stringify(messages)
 
-            // replace profile
             Object.keys(profile).forEach(e => {
                 stringMessages = stringMessages.replace(`{{profile.${e}}}`, profile[e])
             })
 
-            // replace this liff url
             stringMessages = stringMessages.replace(`{{shareThis}}`, `https://liff.line.me/${liffId}${queryString}`)
 
             messages = JSON.parse(stringMessages)
@@ -118,6 +100,7 @@
 
         async function getLiffId() {
             liffId = params.get("liffId")
+            console.log("liffId:", liffId); // เพิ่ม log เพื่อตรวจสอบค่า liffId
             if (!liffId) {
                 throw {
                     emsg: 'no liffId'
@@ -143,7 +126,7 @@
                 }
             } catch (err) {
                 console.log('error:', err)
-                alert("ขออภัย เกิดข้อผิดพลาด " + err.emsg)
+                alert("ขออภัย เกิดข้อผิดพลาด " + (err.emsg || err.message || JSON.stringify(err)))
                 loading.style.display = "none"
             }
         }
