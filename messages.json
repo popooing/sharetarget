@@ -1,4 +1,8 @@
-{
+[
+    {
+        "type": "flex",
+        "altText": "You received a message",
+        "contents": {
   "type": "bubble",
   "size": "giga",
   "hero": {
@@ -38,3 +42,5 @@
     "flex": 0
   }
 }
+    }
+]
