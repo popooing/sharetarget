@@ -1,0 +1,19 @@
+[
+    {
+        "type": "flex",
+        "altText": "This is a Flex Message",
+        "contents": {
+            "type": "bubble",
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "Hello, World!"
+                    }
+                ]
+            }
+        }
+    }
+]
